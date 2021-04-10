@@ -19,6 +19,10 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->pushButton_7, SIGNAL(released()),this,SLOT(digit_pressed()));
     connect(ui->pushButton_8, SIGNAL(released()),this,SLOT(digit_pressed()));
     connect(ui->pushButton_9, SIGNAL(released()),this,SLOT(digit_pressed()));
+    connect(ui->pushButton_plus_moins, SIGNAL(released()),this,SLOT(operation_pressed()));
+    connect(ui->pushButton_pourcent, SIGNAL(released()),this,SLOT(operation_pressed()));
+
+
 }
 
 MainWindow::~MainWindow()
@@ -36,4 +40,39 @@ void MainWindow::digit_pressed()
 
     nouveauLabel = QString::number(nombreLabel, 'g', 15);
     ui->label->setText(nouveauLabel);
+}
+
+void MainWindow::on_pushButton_point_released()
+{
+    ui->label->setText(ui->label->text() + ".");
+}
+
+void MainWindow::operation_pressed()
+{
+    QPushButton * button = (QPushButton*) sender();
+    double nombreLabel;
+    QString nouveauLabel;
+    if (button->text() == "+/-") {
+        nombreLabel = ui->label->text().toDouble() ;
+        nombreLabel = nombreLabel * -1;
+        nouveauLabel = QString::number(nombreLabel, 'g', 15);
+        ui->label->setText(nouveauLabel);
+    }
+
+    if (button->text() == "%") {
+        nombreLabel = ui->label->text().toDouble() ;
+        nombreLabel = nombreLabel * 0.01;
+        nouveauLabel = QString::number(nombreLabel, 'g', 15);
+        ui->label->setText(nouveauLabel);
+    }
+}
+
+void MainWindow::on_pushButton_clear_released()
+{
+
+}
+
+void MainWindow::on_pushButton_egale_released()
+{
+
 }
