@@ -442,6 +442,7 @@ QPushButton:pressed {
    border: 1px solid grey;
 	background-color : #505050;
 border-radius : 30px;
+text-align : left;
 }
 QPushButton:pressed {
     background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
